@@ -1,0 +1,3160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2017r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1671565311">
+ <ObjName>Servers</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "name", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = str(q)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+id, opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "name", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>fixed_instance_sizes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function fixed_instance_sizes(id as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/fixed_instance_sizes", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/fixed_instance_sizes/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>create</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function create(options as Dictionary) As String</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>return ngcssocket.Post("servers", options)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>options as Dictionary</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>remove_server</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function remove_server(id as string) As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>return ngcssocket.Delete("servers/"+id, opts)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get_hardware</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get_hardware(id as String = "") As String</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if mid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No server ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/" + mid + "/hardware", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+id + "/hardware", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as String = ""</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get_harddrives</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get_harddrives(id as String = "", hdd as string = "") As String</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if mid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No server ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>if hdd = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/" + mid + "/hardware/hdds", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+mid+"/hardware/hdds/"+hdd, opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>if hdd = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/" + id + "/hardware/hdds", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+id+"/hardware/hdds/"+hdd, opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as String = "", hdd as string = ""</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get_image</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get_image(id as String = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if mid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No server ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/" + mid + "/image", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+id + "/image", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as String = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get_ips</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get_ips(id as String = "", ipid as string = "") As String</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if mid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No server ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>if ipid = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/" + mid + "/ips", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+mid+"/ips/"+ipid, opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>if ipid = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/" + id + "/ips", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+id+"/ips/"+ipid, opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as String = "", ipid as string = ""</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get_firewall</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get_firewall(id as string = "", ipid as string= "") As String</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if mid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No server ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>if ipid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No IP Address ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+mid+"/ips/"+ipid + "/firewall_policy", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>if ipid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No IP Address ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+id+"/ips/"+ipid+ "/firewall_policy", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", ipid as string= ""</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get_loadbalancers</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get_loadbalancers(id as string = "", ipid as string= "") As String</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if mid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No server ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>if ipid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No IP Address ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+mid+"/ips/"+ipid + "/load_balancers", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>if ipid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No IP Address ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+id+"/ips/"+ipid+ "/load_balancer", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", ipid as string= ""</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>change_power</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function change_power(id as string = "", action as string = "", method as string = "") As String</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>dim act as string</SourceLine>
+   <SourceLine>dim meth as string</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>select case action</SourceLine>
+   <SourceLine>case ""</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No Action given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>case "reboot"</SourceLine>
+   <SourceLine>act = "REBOOT"</SourceLine>
+   <SourceLine>case "on"</SourceLine>
+   <SourceLine>act = "POWER_ON"</SourceLine>
+   <SourceLine>case "off"</SourceLine>
+   <SourceLine>act = "POWER_OFF"</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "Unknown Action Provided"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>end select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>select case method</SourceLine>
+   <SourceLine>case ""</SourceLine>
+   <SourceLine>meth = "HARDWARE"</SourceLine>
+   <SourceLine>case "hardware"</SourceLine>
+   <SourceLine>meth = "HARDWARE"</SourceLine>
+   <SourceLine>case "software"</SourceLine>
+   <SourceLine>meth = "SOFTWARE"</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "Unknown Method Provided"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>end select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>opts.value("action") = act</SourceLine>
+   <SourceLine>opts.value("method") = meth</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if mid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No server ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/" +mid + "/status/action", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+id + "/status/action", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", action as string = "", method as string = ""</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get_snapshots</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get_snapshots() As string</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get_dvd</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get_dvd(id as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if me.id &lt;&gt; "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+me.id+"/dvd", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>msgbox "Exception: You have not set a Server ID!"</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+id + "/dvd", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get_privatenetworks</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub get_privatenetworks()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get_harddrive</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get_harddrive(id as string = "", hdd as string = "") As String</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if mid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No server ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>if hdd = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No Harddrive ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+mid+"/hardware/hdds/"+hdd, opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>if hdd = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No Harddrive ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/"+id+"/hardware/hdds/"+hdd, opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", hdd as string = ""</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>delete</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub delete()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>delete_harddrive</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub delete_harddrive()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>delete_ip</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub delete_ip()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>delete_loadbalancer</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub delete_loadbalancer()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>unload_dvd</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub unload_dvd()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>load_dvd</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub load_dvd()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>delete_privatenetwork</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub delete_privatenetwork()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>delete_snapshot</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub delete_snapshot()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>delete_firewall</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub delete_firewall()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>modify</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub modify()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>modify_hardware</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub modify_hardware()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>modify_harddrive</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub modify_harddrive()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>modify_image</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub modify_image()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>modify_firewall</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub modify_firewall()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>modify_status</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub modify_status()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>modify_dvd</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub modify_dvd()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>restore_snapshot</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub restore_snapshot()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>clone</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function clone(id as string = "", name as string = "", dc as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if name = "" then</SourceLine>
+   <SourceLine>msgbox "Exception: You have not provided a Name"</SourceLine>
+   <SourceLine>return ""</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if dc = "" then</SourceLine>
+   <SourceLine>msgbox "Exception: You have not provided a Datacenter ID"</SourceLine>
+   <SourceLine>return ""</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>opts.value("name") = name</SourceLine>
+   <SourceLine>opts.value("datacenter_id") = dc</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if me.id &lt;&gt; "" then</SourceLine>
+   <SourceLine>return ngcssocket.Post("servers/"+me.id+"/clone", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>msgbox "Exception: You have not set a Server ID!"</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Post("servers/"+id + "/clone", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", name as string = "", dc as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>create_snapshot</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub create_snapshot()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>add_privatenetwork</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function add_privatenetwork(id as string = "", pid as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if pid = "" then</SourceLine>
+   <SourceLine>msgbox "Exception: You have not provided a PrivateNetwork ID"</SourceLine>
+   <SourceLine>return ""</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>opts.value("id") = pid</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if me.id &lt;&gt; "" then</SourceLine>
+   <SourceLine>return ngcssocket.Post("servers/"+me.id+"/private_networks", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>msgbox "Exception: You have not set a Server ID!"</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Post("servers/"+id + "/private_networks", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", pid as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>add_loadbalancer</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function add_loadbalancer(id as string = "", ipid as string = "", lbid as string ="") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if lbid = "" then</SourceLine>
+   <SourceLine>msgbox "Exception: You have not provided a LoadBalancer ID"</SourceLine>
+   <SourceLine>return ""</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if ipid = "" and me.ip = "" then</SourceLine>
+   <SourceLine>msgbox "Exception: You have not set a IP-id"</SourceLine>
+   <SourceLine>return ""</SourceLine>
+   <SourceLine>elseif ipid = "" then</SourceLine>
+   <SourceLine>ipid = me.ip</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>opts.value("load_balancer_id") = lbid</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if me.id &lt;&gt; "" then</SourceLine>
+   <SourceLine>return ngcssocket.Post("servers/"+me.id+"/ips/"+ipid+"/load_balancers", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>msgbox "Exception: You have not set a Server ID!"</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Post("servers/"+id + "/ips/"+ipid+"/load_balancers", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", ipid as string = "", lbid as string =""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>add_ip</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function add_ip(id as string = "", type as string = "IPV4") As String</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>select case type</SourceLine>
+   <SourceLine>case "ipv4"</SourceLine>
+   <SourceLine>type = "IPV4"</SourceLine>
+   <SourceLine>case "ipv6"</SourceLine>
+   <SourceLine>type = "IPV6"</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>type = "IPV4"</SourceLine>
+   <SourceLine>end select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>opts.value("type") = type</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if me.id &lt;&gt; "" then</SourceLine>
+   <SourceLine>return ngcssocket.Post("servers/"+me.id+"/ips", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>msgbox "Exception: You have not set a Server ID!"</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Post("servers/"+id + "/ips", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", type as string = "IPV4"</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>add_harddrive</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function add_harddrive(id as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if me.id &lt;&gt; "" then</SourceLine>
+   <SourceLine>return ngcssocket.Post("servers/"+me.id+"/hardware/hdds", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>msgbox "Exception: You have not set a Server ID!"</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Post("servers/"+id + "/hardware/hdds", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Property>
+  <ItemName>id</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>id As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>id As String</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>mid = value</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>return mid</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>mid</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>mid As string</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mid As string</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>mip_id</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>mip_id As string</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mip_id As string</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>ip</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>ip As string</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>ip As string</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>mip_id = value</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>return mip_id</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>id</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>mid</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>string</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>mip_id</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>string</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>ip</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>string</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="1537177599">
+ <ObjName>mysocket</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Attributes></Attributes>
+ <Method>
+  <ItemName>Get</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>Get = "url as string, opts as Dictionary"</Attributes>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( Get = "url as string, opts as Dictionary" )  Function Get(url as string, opts as Dictionary) As String</SourceLine>
+   <SourceLine>url = apiurl + url + "?"</SourceLine>
+   <SourceLine>dim k, v as Variant</SourceLine>
+   <SourceLine>dim i as integer = opts.Count </SourceLine>
+   <SourceLine>for each k in opts.keys()</SourceLine>
+   <SourceLine>i = i-1</SourceLine>
+   <SourceLine>if opts.value(k).IsNumeric = true then</SourceLine>
+   <SourceLine>url = url + k + "=" + str(opts.value(k))</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>url = url + k + "=" + str(opts.value(k))</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if i &lt;&gt; 0 then</SourceLine>
+   <SourceLine>url = url + "&amp;"</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>'msgbox url</SourceLine>
+   <SourceLine>dim sock as new HTTPSecureSocket</SourceLine>
+   <SourceLine>sock.SetRequestHeader("X-TOKEN", apikey)</SourceLine>
+   <SourceLine>return sock.Get(url, 15)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>url as string, opts as Dictionary</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Post</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes></Attributes>
+  <Visible>1</Visible>
+  <CodeDescription>NGCS Post</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Post(url as string, options as Dictionary) As String</SourceLine>
+   <SourceLine>url = ngcs.apiurl + url</SourceLine>
+   <SourceLine>dim sock as new HTTPSecureSocket</SourceLine>
+   <SourceLine>dim opts as Dictionary = options</SourceLine>
+   <SourceLine>sock.SetRequestHeader("X-TOKEN", ngcs.apikey)</SourceLine>
+   <SourceLine>dim json as new JSONItem</SourceLine>
+   <SourceLine>json = opts</SourceLine>
+   <SourceLine>sock.SetRequestContent(json.ToString, "application/json")</SourceLine>
+   <SourceLine>return sock.Post(url, 15)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>url as string, options as Dictionary</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Delete</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes></Attributes>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Delete(url as string, opts as Dictionary) As String</SourceLine>
+   <SourceLine>url = apiurl + url + "?"</SourceLine>
+   <SourceLine>dim k, v as Variant</SourceLine>
+   <SourceLine>dim i as integer = opts.Count </SourceLine>
+   <SourceLine>for each k in opts.keys()</SourceLine>
+   <SourceLine>i = i-1</SourceLine>
+   <SourceLine>if opts.value(k).IsNumeric = true then</SourceLine>
+   <SourceLine>url = url + k + "=" + str(opts.value(k))</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>url = url + k + "=" +chr(34) + str(opts.value(k)) + chr(34)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if i &lt;&gt; 0 then</SourceLine>
+   <SourceLine>url = url + "&amp;"</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>dim sock as new HTTPSecureSocket</SourceLine>
+   <SourceLine>sock.SetRequestHeader("Content-type", "application/json")</SourceLine>
+   <SourceLine>sock.SetRequestHeader("X-TOKEN", apikey)</SourceLine>
+   <SourceLine>return sock.SendRequest("DELETE", url, 15)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>url as string, opts as Dictionary</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Put</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes></Attributes>
+  <Visible>1</Visible>
+  <CodeDescription>NGCS Post</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Put(url as string, options as Dictionary) As String</SourceLine>
+   <SourceLine>url = ngcs.apiurl + url</SourceLine>
+   <SourceLine>dim sock as new HTTPSecureSocket</SourceLine>
+   <SourceLine>dim opts as Dictionary = options</SourceLine>
+   <SourceLine>sock.SetRequestHeader("X-TOKEN", ngcs.apikey)</SourceLine>
+   <SourceLine>dim json as new JSONItem</SourceLine>
+   <SourceLine>json = opts</SourceLine>
+   <SourceLine>sock.SetRequestContent(json.ToString, "application/json")</SourceLine>
+   <SourceLine>return sock.SendRequest("PUT", url, 15)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>url as string, options as Dictionary</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="1804611583">
+ <ObjName>Images</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>getAll</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function getAll(page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>return ngcssocket.Get("images", opts)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("images", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("images/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="809990143">
+ <ObjName>PrivateNetworks</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>getAll</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function getAll(page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>return ngcssocket.Get("private_networks", opts)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("private_networks", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("private_networks/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="816353279">
+ <ObjName>PublicIPs</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>getAll</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function getAll(page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>return ngcssocket.Get("public_ips", opts)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("public_ips", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("public_ips/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="568727551">
+ <ObjName>LoadBalancers</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>getAll</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function getAll(page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>return ngcssocket.Get("load_balancers", opts)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("load_balancers", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("load_balancers/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="1857497087">
+ <ObjName>FirewallPolicies</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>getAll</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function getAll(page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>return ngcssocket.Get("firewall_policies", opts)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("firewall_policies", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("firewall_policies/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="1819326463">
+ <ObjName>SharedStorages</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>getAll</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function getAll(page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>return ngcssocket.Get("shared_storages", opts)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("shared_storages", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("shared_storages/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="1962731519">
+ <ObjName>VPN</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("vpn", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("vpn/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get_configurationfile</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get_configurationfile(id as string ="") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>id = mid</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("vpn/"+id + "/configuration_file", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string =""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Property>
+  <ItemName>id</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>id As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>id As String</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>mid = value</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>return mid</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>mid</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>mid As string</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mid As string</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>id</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>mid</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>string</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="2059165695">
+ <ObjName>MonitoringCenter</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("monitoring_center", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("monitoring_center/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="1268996095">
+ <ObjName>MonitoringPolicies</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("shared_storages", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("shared_storages/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="409982975">
+ <ObjName>Logs</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("logs", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("logs/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="2131472383">
+ <ObjName>Users</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("users", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("users/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="255213567">
+ <ObjName>Roles</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("shared_storages", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("shared_storages/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>delete</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function delete(id as string) As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>id = mid</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>dim e as new RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No ID found for this role"</SourceLine>
+   <SourceLine>raise E</SourceLine>
+   <SourceLine>return ""</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>return ngcssocket.Delete("roles/"+id, opts)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>modify</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function modify(id as string, name as string = "", description as string = "", state as string = "") As string</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string, name as string = "", description as string = "", state as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>get_permissions</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub get_permissions(id as string = "")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = ""</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Property>
+  <ItemName>id</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>id As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>id As String</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>mid = value</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>return mid</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>mid</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>mid As string</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mid As string</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>status</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>status As string</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>status As string</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>if mid = "" then</SourceLine>
+   <SourceLine>Dim e As New RuntimeException</SourceLine>
+   <SourceLine>e.Message = "No server ID given"</SourceLine>
+   <SourceLine>Raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/status", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("servers/status", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>id</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>mid</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>string</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>status</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>string</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="269250559">
+ <ObjName>Usages</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>return ngcssocket.Get("usages", opts)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="163561471">
+ <ObjName>ServerAppliances</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("shared_storages", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("shared_storages/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="1783369727">
+ <ObjName>DVDISO</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("dvd_isos", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("dvd_isos/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="726958079">
+ <ObjName>Ping</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>ping_unauth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ping_unauth() As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>return ngcssocket.Get("ping", opts)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ping_auth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ping_auth() As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>return ngcssocket.Get("ping_auth", opts)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="1359394815">
+ <ObjName>Pricing</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get() As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>return ngcssocket.Get("pricing", opts)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="271249407">
+ <ObjName>Datacenters</ObjName>
+ <ObjContainerID>148490239</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function get(id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = "") As string</SourceLine>
+   <SourceLine>dim ngcssocket as new ngcs.mysocket</SourceLine>
+   <SourceLine>dim opts as new Dictionary</SourceLine>
+   <SourceLine>opts.Value("page") = page</SourceLine>
+   <SourceLine>opts.Value("per_page") = per_page</SourceLine>
+   <SourceLine>if sort &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("sort") = sort</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if q &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("q") = q</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if fields &lt;&gt; "" then</SourceLine>
+   <SourceLine>opts.Value("fields") = fields</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>if id = "" then</SourceLine>
+   <SourceLine>return ngcssocket.Get("datacenters", opts)</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return ngcssocket.Get("datacenters/"+id + "/", opts)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>id as string = "", page as integer = 1, per_page as integer = 10, sort as string = "", q as string = "", fields as string = ""</ItemParams>
+  <ItemResult>string</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="148490239">
+ <ObjName>ngcs</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>0</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Property>
+  <ItemName>apikey</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>apikey As string</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>apikey As string</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>apiurl</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>apiurl As String = "https://cloudpanel-api.1and1.com/v1/"</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>apiurl As String = "https://cloudpanel-api.1and1.com/v1/"</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>apikey</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>string</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>
